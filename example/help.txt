@@ -1,0 +1,6 @@
+This folder contains a sample output of the script in a file named "srch_res_20171207_214200.xls".
+File is named in the srch_res_yyyymmdd_hhmmss format where srch_res: search result,
+    20171207: yyyymmdd,
+    214200:   hhmmss.
+
+srch_res_20171207_214200 contains sheet named as "hr manager microsoft email me at" as it is the searched term.
