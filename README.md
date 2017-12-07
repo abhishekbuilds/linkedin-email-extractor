@@ -35,3 +35,18 @@ NOTE:
 
 ## Suggestion
 If you want to see the whole result without exchausting your credit you can go at http://recruitmentgeek.com/tools/linkedin/ and search the query. You liked the result then you can use the same query with the LEE and get the emails extracted out of it.
+
+## Meta
+
+Abhishek Singh – [@asraisingh](https://twitter.com/asraisingh) – www.iabhishek.me
+
+Distributed under the MIT license. See ``LICENSE`` for more information.
+
+[https://github.com/asraisingh/linkedin-email-extractor](asraisingh/linkedin-email-extractor)
+
+## Contribution
+1. Fork it (<https://github.com/asraisingh/linkedin-email-extractor/fork>)
+2. Create your feature branch (`git checkout -b feature/fooBar`)
+3. Commit your changes (`git commit -am 'Add some fooBar'`)
+4. Push to the branch (`git push origin feature/fooBar`)
+5. Create a new Pull Request
