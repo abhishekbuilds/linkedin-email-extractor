@@ -59,9 +59,14 @@ if __name__ == '__main__':
             title = results['items'][profile]['title']
             link = results['items'][profile]['link']
             snippet = results['items'][profile]['snippet']
-            org = results['items'][profile]['pagemap']['person'][0]['org']
-            location = results['items'][profile]['pagemap']['person'][0]['location']
-            role = results['items'][profile]['pagemap']['person'][0]['role']
+            # org = results['items'][profile]['pagemap']['person'][0]['org']
+            # location = results['items'][profile]['pagemap']['person'][0]['location']
+            # role = results['items'][profile]['pagemap']['person'][0]['role']
+            #All three are set to be null as some profiles don't contains the person key.
+            #I am trying to resolve this issue.
+            org="Null"
+            location="Null"
+            role="Null"
             myList = [item for item in snippet.split('\n')]
             newSnippet = ' '.join(myList)
             contain = re.search(r'[\w\.-]+@[\w\.-]+', newSnippet)
