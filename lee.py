@@ -11,6 +11,7 @@ if __name__ == '__main__':
     now_sfx = dt.datetime.now().strftime('%Y%m%d_%H%M%S')
     output_dir = './output/'
     output_fname = output_dir + 'srch_res_' + now_sfx + '.xls'
+    
     search_term = sys.argv[1]
     num_requests = int(sys.argv[2])
     
@@ -20,7 +21,7 @@ if __name__ == '__main__':
     service = build("customsearch", "v1", developerKey=my_api_key)
 
     wb=Workbook()
-    sheet1 = wb.add_sheet(search_term)                      #Excel sheet created with name of the search term.
+    sheet1 = wb.add_sheet(search_term[0:15])
     wb.save(output_fname)
     sheet1.write(0,0,'Name')
     sheet1.write(0,1,'Profile Link')
@@ -38,7 +39,7 @@ if __name__ == '__main__':
     sheet1.col(6).width = 256 * 50
     wb.save(output_fname)
 
-    row = 1                                                 #To insert the data in the next row.
+    row = 1 #To insert the data in the next row.
 
     #Function to perform google search.
     def google_search(search_term, cse_id, start_val, **kwargs):
@@ -52,25 +53,26 @@ if __name__ == '__main__':
         results = google_search(search_term,
             my_cse_id,
             start_val,
-            num=10                                          #num value can be 1 to 10. It will give the no. of results. 
+            num=10 #num value can be 1 to 10. It will give the no. of results. 
         )
-
         for profile in range (0, 10):
-            title = results['items'][profile]['title']
-            link = results['items'][profile]['link']
             snippet = results['items'][profile]['snippet']
-            # org = results['items'][profile]['pagemap']['person'][0]['org']
-            # location = results['items'][profile]['pagemap']['person'][0]['location']
-            # role = results['items'][profile]['pagemap']['person'][0]['role']
-            #All three are set to be null as some profiles don't contains the person key.
-            #I am trying to resolve this issue.
-            org="Null"
-            location="Null"
-            role="Null"
             myList = [item for item in snippet.split('\n')]
             newSnippet = ' '.join(myList)
             contain = re.search(r'[\w\.-]+@[\w\.-]+', newSnippet)
             if contain is not None:
+                title = results['items'][profile]['title']
+                link = results['items'][profile]['link']
+                org = "-NA-"
+                location = "-NA-"
+                role = "-NA-"
+                if 'person' in results['items'][profile]['pagemap']:
+                    if 'org' in results['items'][profile]['pagemap']['person'][0]:
+                        org = results['items'][profile]['pagemap']['person'][0]['org']
+                    if 'location' in results['items'][profile]['pagemap']['person'][0]:
+                        location = results['items'][profile]['pagemap']['person'][0]['location']
+                    if 'role' in results['items'][profile]['pagemap']['person'][0]:
+                        role = results['items'][profile]['pagemap']['person'][0]['role']
                 print(title[:-23])
                 sheet1.write(row,0,title[:-23])
                 sheet1.write(row,1,link)
@@ -80,7 +82,7 @@ if __name__ == '__main__':
                 sheet1.write(row,5,role)
                 sheet1.write(row,6,contain[0])
                 print('Wrote {} search result(s)...'.format(row))
+                wb.save(output_fname)
                 row = row + 1
-
-    wb.save(output_fname)
+                
     print('Output file "{}" written.'.format(output_fname)) 
