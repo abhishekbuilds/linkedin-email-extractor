@@ -34,7 +34,7 @@ NOTE:
 > In processing 100 results for a query 10 credits will be exhausted from your Google API limits.
 
 ## Suggestion
-If you want to see the whole result without exchausting your credit you can go at http://recruitmentgeek.com/tools/linkedin/ and search the query. You liked the result then you can use the same query with the LEE and get the emails extracted out of it.
+If you want to see the whole result without exhausting your credit you can go at http://recruitmentgeek.com/tools/linkedin/ and search the query. You liked the result then you can use the same query with the LEE and get the emails extracted out of it.
 
 ## Meta
 
